@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e4fbcf6e21874e568f66cb68ac044a6e" Name="Diagram1">
+        <EntityTypeShape EntityType="ArbitraModel1.AdminoWorld" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArbitraModel1.ArbitrageClients" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArbitraModel1.History" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArbitraModel1.P2PHelper" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArbitraModel1.SpotFinancialHelper" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <AssociationConnector Association="ArbitraModel1.FK__AdminoWor__Id_cl__2A164134" ManuallyRouted="false" />
+        <AssociationConnector Association="ArbitraModel1.FK__History__Id_clie__06CD04F7" ManuallyRouted="false" />
+        <AssociationConnector Association="ArbitraModel1.FK__P2PHelper__Id_cl__7755B73D" ManuallyRouted="false" />
+        <AssociationConnector Association="ArbitraModel1.FK__SpotFinan__Id_cl__7B264821" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

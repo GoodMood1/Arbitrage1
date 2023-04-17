@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ArbitraModelStoreContainer" CdmEntityContainer="ArbitraEntities1">
+    <EntitySetMapping Name="AdminoWorld">
+      <EntityTypeMapping TypeName="ArbitraModel.AdminoWorld">
+        <MappingFragment StoreEntitySet="AdminoWorld">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id_clients" ColumnName="Id_clients" />
+          <ScalarProperty Name="Exchanges" ColumnName="Exchanges" />
+          <ScalarProperty Name="APICommand1" ColumnName="APICommand1" />
+          <ScalarProperty Name="APICommand2" ColumnName="APICommand2" />
+          <ScalarProperty Name="APICommand3" ColumnName="APICommand3" />
+          <ScalarProperty Name="APICommand4" ColumnName="APICommand4" />
+          <ScalarProperty Name="APICommand5" ColumnName="APICommand5" />
+          <ScalarProperty Name="MailForNotify" ColumnName="MailForNotify" />
+          <ScalarProperty Name="MailPasswordKeyForAccess" ColumnName="MailPasswordKeyForAccess" />
+          <ScalarProperty Name="MailPasswordToAccount" ColumnName="MailPasswordToAccount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ArbitrageClients">
+      <EntityTypeMapping TypeName="ArbitraModel.ArbitrageClients">
+        <MappingFragment StoreEntitySet="ArbitrageClients">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Login_" ColumnName="Login_" />
+          <ScalarProperty Name="Password_" ColumnName="Password_" />
+          <ScalarProperty Name="API1Huobi" ColumnName="API1Huobi" />
+          <ScalarProperty Name="API1HuobiSecretKey" ColumnName="API1HuobiSecretKey" />
+          <ScalarProperty Name="API2Binance" ColumnName="API2Binance" />
+          <ScalarProperty Name="API2BinanceSecretKey" ColumnName="API2BinanceSecretKey" />
+          <ScalarProperty Name="API3Uniswap" ColumnName="API3Uniswap" />
+          <ScalarProperty Name="API3UniswapSecretKey" ColumnName="API3UniswapSecretKey" />
+          <ScalarProperty Name="API4Kraken" ColumnName="API4Kraken" />
+          <ScalarProperty Name="API4KrakenSecretKey" ColumnName="API4KrakenSecretKey" />
+          <ScalarProperty Name="API5Pancakeswap" ColumnName="API5Pancakeswap" />
+          <ScalarProperty Name="API5PancakeswapSecretKey" ColumnName="API5PancakeswapSecretKey" />
+          <ScalarProperty Name="Passphrase" ColumnName="Passphrase" />
+          <ScalarProperty Name="Passphrase2" ColumnName="Passphrase2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="History">
+      <EntityTypeMapping TypeName="ArbitraModel.History">
+        <MappingFragment StoreEntitySet="History">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id_clients" ColumnName="Id_clients" />
+          <ScalarProperty Name="exchanges" ColumnName="exchanges" />
+          <ScalarProperty Name="profit" ColumnName="profit" />
+          <ScalarProperty Name="sold" ColumnName="sold" />
+          <ScalarProperty Name="bought" ColumnName="bought" />
+          <ScalarProperty Name="timehistory" ColumnName="timehistory" />
+          <ScalarProperty Name="totalprofit" ColumnName="totalprofit" />
+          <ScalarProperty Name="investments" ColumnName="investments" />
+          <ScalarProperty Name="floatingprofit" ColumnName="floatingprofit" />
+          <ScalarProperty Name="finishedmashwork" ColumnName="finishedmashwork" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="P2PHelper">
+      <EntityTypeMapping TypeName="ArbitraModel.P2PHelper">
+        <MappingFragment StoreEntitySet="P2PHelper">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id_clients" ColumnName="Id_clients" />
+          <ScalarProperty Name="exchanges" ColumnName="exchanges" />
+          <ScalarProperty Name="cryptopair" ColumnName="cryptopair" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="profit" ColumnName="profit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SpotFinancialHelper">
+      <EntityTypeMapping TypeName="ArbitraModel.SpotFinancialHelper">
+        <MappingFragment StoreEntitySet="SpotFinancialHelper">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id_clients" ColumnName="Id_clients" />
+          <ScalarProperty Name="pricerange1" ColumnName="pricerange1" />
+          <ScalarProperty Name="pricerange2" ColumnName="pricerange2" />
+          <ScalarProperty Name="mashwork" ColumnName="mashwork" />
+          <ScalarProperty Name="ammount" ColumnName="ammount" />
+          <ScalarProperty Name="profitofthemash" ColumnName="profitofthemash" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="stp_AddClientAPI" FunctionName="ArbitraModel.Store.stp_AddClientAPI" />
+    <FunctionImportMapping FunctionImportName="stp_AddClients" FunctionName="ArbitraModel.Store.stp_AddClients" />
+    <FunctionImportMapping FunctionImportName="stp_AdminoInfo" FunctionName="ArbitraModel.Store.stp_AdminoInfo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbitraModel.stp_AdminoInfo_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id_clients" ColumnName="Id_clients" />
+          <ScalarProperty Name="Exchanges" ColumnName="Exchanges" />
+          <ScalarProperty Name="APICommand1" ColumnName="APICommand1" />
+          <ScalarProperty Name="APICommand2" ColumnName="APICommand2" />
+          <ScalarProperty Name="APICommand3" ColumnName="APICommand3" />
+          <ScalarProperty Name="APICommand4" ColumnName="APICommand4" />
+          <ScalarProperty Name="APICommand5" ColumnName="APICommand5" />
+          <ScalarProperty Name="MailForNotify" ColumnName="MailForNotify" />
+          <ScalarProperty Name="MailPasswordKeyForAccess" ColumnName="MailPasswordKeyForAccess" />
+          <ScalarProperty Name="MailPasswordToAccount" ColumnName="MailPasswordToAccount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="stp_ClientsInfo" FunctionName="ArbitraModel.Store.stp_ClientsInfo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbitraModel.stp_ClientsInfo_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Login_" ColumnName="Login_" />
+          <ScalarProperty Name="Password_" ColumnName="Password_" />
+          <ScalarProperty Name="API1Huobi" ColumnName="API1Huobi" />
+          <ScalarProperty Name="API1HuobiSecretKey" ColumnName="API1HuobiSecretKey" />
+          <ScalarProperty Name="API2Binance" ColumnName="API2Binance" />
+          <ScalarProperty Name="API2BinanceSecretKey" ColumnName="API2BinanceSecretKey" />
+          <ScalarProperty Name="API3Uniswap" ColumnName="API3Uniswap" />
+          <ScalarProperty Name="API3UniswapSecretKey" ColumnName="API3UniswapSecretKey" />
+          <ScalarProperty Name="API4Kraken" ColumnName="API4Kraken" />
+          <ScalarProperty Name="API4KrakenSecretKey" ColumnName="API4KrakenSecretKey" />
+          <ScalarProperty Name="API5Pancakeswap" ColumnName="API5Pancakeswap" />
+          <ScalarProperty Name="API5PancakeswapSecretKey" ColumnName="API5PancakeswapSecretKey" />
+          <ScalarProperty Name="Passphrase" ColumnName="Passphrase" />
+          <ScalarProperty Name="Passphrase2" ColumnName="Passphrase2" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="stp_SendMail" FunctionName="ArbitraModel.Store.stp_SendMail" />
+    <FunctionImportMapping FunctionImportName="stp_ShowHistorywithValidation" FunctionName="ArbitraModel.Store.stp_ShowHistorywithValidation">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ArbitraModel.stp_ShowHistorywithValidation_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id_clients" ColumnName="Id_clients" />
+          <ScalarProperty Name="exchanges" ColumnName="exchanges" />
+          <ScalarProperty Name="profit" ColumnName="profit" />
+          <ScalarProperty Name="sold" ColumnName="sold" />
+          <ScalarProperty Name="bought" ColumnName="bought" />
+          <ScalarProperty Name="timehistory" ColumnName="timehistory" />
+          <ScalarProperty Name="totalprofit" ColumnName="totalprofit" />
+          <ScalarProperty Name="investments" ColumnName="investments" />
+          <ScalarProperty Name="floatingprofit" ColumnName="floatingprofit" />
+          <ScalarProperty Name="finishedmashwork" ColumnName="finishedmashwork" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="stp_AddPhrase" FunctionName="ArbitraModel.Store.stp_AddPhrase" />
+  </EntityContainerMapping>
+</Mapping>

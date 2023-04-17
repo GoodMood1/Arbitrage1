@@ -1,0 +1,28 @@
+﻿<Window x:Class="VIPArbitrageMissForYou.UpgradeMessageBoxPassPhrase"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VIPArbitrageMissForYou"
+        mc:Ignorable="d"
+        Title="UpgradeMessageBoxPassPhrase" Height="450" Width="800" WindowStyle="None">
+    <Window.Background>
+        <ImageBrush ImageSource="/Resources/tipspic1.png"/>
+    </Window.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" Click="Button_Click" Content=" X " Background="Red"/>
+        <TextBlock FontSize="20" Opacity="0.6" Background="Black" FontWeight="Bold" Foreground="White" Name="tipdescr" Text="Enter your info" TextWrapping="Wrap" Grid.ColumnSpan="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="as1" FontSize="22" Foreground="DarkSeaGreen" Grid.ColumnSpan="4" Grid.Column="0" Grid.Row="1" Height="40" VerticalAlignment="Top" Margin="68,0,69,0"></TextBox>
+        <Button Content="Send" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="LightSeaGreen" FontSize="22" Width="99" FontWeight="DemiBold" Click="Button_Click"/>
+    </Grid>
+</Window>

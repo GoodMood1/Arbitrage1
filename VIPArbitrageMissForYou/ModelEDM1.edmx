@@ -1,0 +1,587 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ArbitraModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminoWorld">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_clients" Type="int" Nullable="false" />
+          <Property Name="Exchanges" Type="nvarchar" MaxLength="15" />
+          <Property Name="APICommand1" Type="nvarchar(max)" />
+          <Property Name="APICommand2" Type="nvarchar(max)" />
+          <Property Name="APICommand3" Type="nvarchar(max)" />
+          <Property Name="APICommand4" Type="nvarchar(max)" />
+          <Property Name="APICommand5" Type="nvarchar(max)" />
+          <Property Name="MailForNotify" Type="nvarchar" MaxLength="105" />
+          <Property Name="MailPasswordKeyForAccess" Type="nvarchar" MaxLength="105" />
+          <Property Name="MailPasswordToAccount" Type="nvarchar" MaxLength="105" />
+        </EntityType>
+        <EntityType Name="ArbitrageClients">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login_" Type="nvarchar" MaxLength="105" Nullable="false" />
+          <Property Name="Password_" Type="nvarchar" MaxLength="105" Nullable="false" />
+          <Property Name="API1Huobi" Type="nvarchar(max)" />
+          <Property Name="API1HuobiSecretKey" Type="nvarchar(max)" />
+          <Property Name="API2Binance" Type="nvarchar(max)" />
+          <Property Name="API2BinanceSecretKey" Type="nvarchar(max)" />
+          <Property Name="API3Uniswap" Type="nvarchar(max)" />
+          <Property Name="API3UniswapSecretKey" Type="nvarchar(max)" />
+          <Property Name="API4Kraken" Type="nvarchar(max)" />
+          <Property Name="API4KrakenSecretKey" Type="nvarchar(max)" />
+          <Property Name="API5Pancakeswap" Type="nvarchar(max)" />
+          <Property Name="API5PancakeswapSecretKey" Type="nvarchar(max)" />
+          <Property Name="Passphrase" Type="nvarchar" MaxLength="55" />
+          <Property Name="Passphrase2" Type="nvarchar" MaxLength="55" />
+        </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_clients" Type="int" Nullable="false" />
+          <Property Name="exchanges" Type="nvarchar" MaxLength="100" />
+          <Property Name="profit" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="sold" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="bought" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="timehistory" Type="datetime" />
+          <Property Name="totalprofit" Type="decimal" Precision="11" Scale="2" />
+        </EntityType>
+        <EntityType Name="P2PHelper">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_clients" Type="int" Nullable="false" />
+          <Property Name="exchanges" Type="nvarchar" MaxLength="15" />
+          <Property Name="cryptopair" Type="nvarchar" MaxLength="35" />
+          <Property Name="price1" Type="decimal" Precision="11" Scale="2" />
+          <Property Name="price2" Type="decimal" Precision="11" Scale="2" />
+          <Property Name="profit" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="SpotFinancialHelper">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_clients" Type="int" Nullable="false" />
+          <Property Name="cryptopair" Type="nvarchar" MaxLength="35" />
+          <Property Name="exchanges" Type="nvarchar" MaxLength="15" />
+          <Property Name="investments" Type="int" />
+          <Property Name="profitofthemash" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="timehistory" Type="date" />
+        </EntityType>
+        <Association Name="FK__AdminoWor__Id_cl__2A164134">
+          <End Role="ArbitrageClients" Type="Self.ArbitrageClients" Multiplicity="1" />
+          <End Role="AdminoWorld" Type="Self.AdminoWorld" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArbitrageClients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdminoWorld">
+              <PropertyRef Name="Id_clients" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__History__Id_clie__06CD04F7">
+          <End Role="ArbitrageClients" Type="Self.ArbitrageClients" Multiplicity="1" />
+          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArbitrageClients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="Id_clients" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__P2PHelper__Id_cl__7755B73D">
+          <End Role="ArbitrageClients" Type="Self.ArbitrageClients" Multiplicity="1" />
+          <End Role="P2PHelper" Type="Self.P2PHelper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArbitrageClients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="P2PHelper">
+              <PropertyRef Name="Id_clients" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SpotFinan__Id_cl__7B264821">
+          <End Role="ArbitrageClients" Type="Self.ArbitrageClients" Multiplicity="1" />
+          <End Role="SpotFinancialHelper" Type="Self.SpotFinancialHelper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArbitrageClients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SpotFinancialHelper">
+              <PropertyRef Name="Id_clients" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="stp_AddClientAPI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="i" Type="int" Mode="In" />
+          <Parameter Name="Login_" Type="nvarchar" Mode="In" />
+          <Parameter Name="Pass" Type="nvarchar" Mode="In" />
+          <Parameter Name="API" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="APISecret" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="stp_AddClients" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Login_" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password_" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="stp_AddHistory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Login_" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password_" Type="nvarchar" Mode="In" />
+          <Parameter Name="exch_" Type="nvarchar" Mode="In" />
+          <Parameter Name="sold_" Type="decimal" Mode="In" />
+          <Parameter Name="bought_" Type="decimal" Mode="In" />
+          <Parameter Name="time_" Type="date" Mode="In" />
+        </Function>
+        <Function Name="stp_AddPhrase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="i" Type="int" Mode="In" />
+          <Parameter Name="Login_" Type="nvarchar" Mode="In" />
+          <Parameter Name="Pass" Type="nvarchar" Mode="In" />
+          <Parameter Name="Passphrase" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="stp_AdminoInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Login_" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="stp_ClearHistory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Login_" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password_" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="stp_ClientsInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Login_" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password_" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="stp_SendMail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Login_" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="stp_ShowHistory2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Login_" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password_" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="stp_ShowHistorywithValidation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Login_" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password_" Type="nvarchar" Mode="In" />
+          <Parameter Name="l" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="ArbitraModel1StoreContainer">
+          <EntitySet Name="AdminoWorld" EntityType="Self.AdminoWorld" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ArbitrageClients" EntityType="Self.ArbitrageClients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History" EntityType="Self.History" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="P2PHelper" EntityType="Self.P2PHelper" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpotFinancialHelper" EntityType="Self.SpotFinancialHelper" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AdminoWor__Id_cl__2A164134" Association="Self.FK__AdminoWor__Id_cl__2A164134">
+            <End Role="ArbitrageClients" EntitySet="ArbitrageClients" />
+            <End Role="AdminoWorld" EntitySet="AdminoWorld" />
+          </AssociationSet>
+          <AssociationSet Name="FK__History__Id_clie__06CD04F7" Association="Self.FK__History__Id_clie__06CD04F7">
+            <End Role="ArbitrageClients" EntitySet="ArbitrageClients" />
+            <End Role="History" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK__P2PHelper__Id_cl__7755B73D" Association="Self.FK__P2PHelper__Id_cl__7755B73D">
+            <End Role="ArbitrageClients" EntitySet="ArbitrageClients" />
+            <End Role="P2PHelper" EntitySet="P2PHelper" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SpotFinan__Id_cl__7B264821" Association="Self.FK__SpotFinan__Id_cl__7B264821">
+            <End Role="ArbitrageClients" EntitySet="ArbitrageClients" />
+            <End Role="SpotFinancialHelper" EntitySet="SpotFinancialHelper" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ArbitraModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdminoWorld">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_clients" Type="Int32" Nullable="false" />
+          <Property Name="Exchanges" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="APICommand1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="APICommand2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="APICommand3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="APICommand4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="APICommand5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MailForNotify" Type="String" MaxLength="105" FixedLength="false" Unicode="true" />
+          <Property Name="MailPasswordKeyForAccess" Type="String" MaxLength="105" FixedLength="false" Unicode="true" />
+          <Property Name="MailPasswordToAccount" Type="String" MaxLength="105" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ArbitrageClients" Relationship="Self.FK__AdminoWor__Id_cl__2A164134" FromRole="AdminoWorld" ToRole="ArbitrageClients" />
+        </EntityType>
+        <EntityType Name="ArbitrageClients">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login_" Type="String" MaxLength="105" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password_" Type="String" MaxLength="105" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="API1Huobi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="API1HuobiSecretKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="API2Binance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="API2BinanceSecretKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="API3Uniswap" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="API3UniswapSecretKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="API4Kraken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="API4KrakenSecretKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="API5Pancakeswap" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="API5PancakeswapSecretKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Passphrase" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
+          <Property Name="Passphrase2" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AdminoWorld" Relationship="Self.FK__AdminoWor__Id_cl__2A164134" FromRole="ArbitrageClients" ToRole="AdminoWorld" />
+          <NavigationProperty Name="History" Relationship="Self.FK__History__Id_clie__06CD04F7" FromRole="ArbitrageClients" ToRole="History" />
+          <NavigationProperty Name="P2PHelper" Relationship="Self.FK__P2PHelper__Id_cl__7755B73D" FromRole="ArbitrageClients" ToRole="P2PHelper" />
+          <NavigationProperty Name="SpotFinancialHelper" Relationship="Self.FK__SpotFinan__Id_cl__7B264821" FromRole="ArbitrageClients" ToRole="SpotFinancialHelper" />
+        </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_clients" Type="Int32" Nullable="false" />
+          <Property Name="exchanges" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="profit" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="sold" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="bought" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="timehistory" Type="DateTime" Precision="3" />
+          <Property Name="totalprofit" Type="Decimal" Precision="11" Scale="2" />
+          <NavigationProperty Name="ArbitrageClients" Relationship="Self.FK__History__Id_clie__06CD04F7" FromRole="History" ToRole="ArbitrageClients" />
+        </EntityType>
+        <EntityType Name="P2PHelper">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_clients" Type="Int32" Nullable="false" />
+          <Property Name="exchanges" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="cryptopair" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="price1" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="price2" Type="Decimal" Precision="11" Scale="2" />
+          <Property Name="profit" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="ArbitrageClients" Relationship="Self.FK__P2PHelper__Id_cl__7755B73D" FromRole="P2PHelper" ToRole="ArbitrageClients" />
+        </EntityType>
+        <EntityType Name="SpotFinancialHelper">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_clients" Type="Int32" Nullable="false" />
+          <Property Name="cryptopair" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="exchanges" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="investments" Type="Int32" />
+          <Property Name="profitofthemash" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="timehistory" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="ArbitrageClients" Relationship="Self.FK__SpotFinan__Id_cl__7B264821" FromRole="SpotFinancialHelper" ToRole="ArbitrageClients" />
+        </EntityType>
+        <Association Name="FK__AdminoWor__Id_cl__2A164134">
+          <End Role="ArbitrageClients" Type="Self.ArbitrageClients" Multiplicity="1" />
+          <End Role="AdminoWorld" Type="Self.AdminoWorld" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArbitrageClients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdminoWorld">
+              <PropertyRef Name="Id_clients" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__History__Id_clie__06CD04F7">
+          <End Role="ArbitrageClients" Type="Self.ArbitrageClients" Multiplicity="1" />
+          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArbitrageClients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="Id_clients" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__P2PHelper__Id_cl__7755B73D">
+          <End Role="ArbitrageClients" Type="Self.ArbitrageClients" Multiplicity="1" />
+          <End Role="P2PHelper" Type="Self.P2PHelper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArbitrageClients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="P2PHelper">
+              <PropertyRef Name="Id_clients" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SpotFinan__Id_cl__7B264821">
+          <End Role="ArbitrageClients" Type="Self.ArbitrageClients" Multiplicity="1" />
+          <End Role="SpotFinancialHelper" Type="Self.SpotFinancialHelper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArbitrageClients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SpotFinancialHelper">
+              <PropertyRef Name="Id_clients" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ArbitraEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminoWorld" EntityType="Self.AdminoWorld" />
+          <EntitySet Name="ArbitrageClients" EntityType="Self.ArbitrageClients" />
+          <EntitySet Name="History" EntityType="Self.History" />
+          <EntitySet Name="P2PHelper" EntityType="Self.P2PHelper" />
+          <EntitySet Name="SpotFinancialHelper" EntityType="Self.SpotFinancialHelper" />
+          <AssociationSet Name="FK__AdminoWor__Id_cl__2A164134" Association="Self.FK__AdminoWor__Id_cl__2A164134">
+            <End Role="ArbitrageClients" EntitySet="ArbitrageClients" />
+            <End Role="AdminoWorld" EntitySet="AdminoWorld" />
+          </AssociationSet>
+          <AssociationSet Name="FK__History__Id_clie__06CD04F7" Association="Self.FK__History__Id_clie__06CD04F7">
+            <End Role="ArbitrageClients" EntitySet="ArbitrageClients" />
+            <End Role="History" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK__P2PHelper__Id_cl__7755B73D" Association="Self.FK__P2PHelper__Id_cl__7755B73D">
+            <End Role="ArbitrageClients" EntitySet="ArbitrageClients" />
+            <End Role="P2PHelper" EntitySet="P2PHelper" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SpotFinan__Id_cl__7B264821" Association="Self.FK__SpotFinan__Id_cl__7B264821">
+            <End Role="ArbitrageClients" EntitySet="ArbitrageClients" />
+            <End Role="SpotFinancialHelper" EntitySet="SpotFinancialHelper" />
+          </AssociationSet>
+          <FunctionImport Name="stp_AddClientAPI">
+            <Parameter Name="i" Mode="In" Type="Int32" />
+            <Parameter Name="Login_" Mode="In" Type="String" />
+            <Parameter Name="Pass" Mode="In" Type="String" />
+            <Parameter Name="API" Mode="In" Type="String" />
+            <Parameter Name="APISecret" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="stp_AddClients">
+            <Parameter Name="Login_" Mode="In" Type="String" />
+            <Parameter Name="Password_" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="stp_AddHistory">
+            <Parameter Name="Login_" Mode="In" Type="String" />
+            <Parameter Name="Password_" Mode="In" Type="String" />
+            <Parameter Name="exch_" Mode="In" Type="String" />
+            <Parameter Name="sold_" Mode="In" Type="Decimal" />
+            <Parameter Name="bought_" Mode="In" Type="Decimal" />
+            <Parameter Name="time_" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="stp_AddPhrase">
+            <Parameter Name="i" Mode="In" Type="Int32" />
+            <Parameter Name="Login_" Mode="In" Type="String" />
+            <Parameter Name="Pass" Mode="In" Type="String" />
+            <Parameter Name="Passphrase" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="stp_AdminoInfo" ReturnType="Collection(ArbitraModel1.stp_AdminoInfo_Result)">
+          <Parameter Name="Login_" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="stp_ClearHistory">
+            <Parameter Name="Login_" Mode="In" Type="String" />
+            <Parameter Name="Password_" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="stp_ClientsInfo" ReturnType="Collection(ArbitraModel1.stp_ClientsInfo_Result)">
+            <Parameter Name="Login_" Mode="In" Type="String" />
+            <Parameter Name="Password_" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="stp_SendMail" ReturnType="Collection(String)">
+          <Parameter Name="Login_" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="stp_ShowHistorywithValidation" ReturnType="Collection(Decimal)">
+            <Parameter Name="Login_" Mode="In" Type="String" />
+            <Parameter Name="Password_" Mode="In" Type="String" />
+            <Parameter Name="l" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="stp_ShowHistory2" ReturnType="Collection(String)">
+            <Parameter Name="Login_" Mode="In" Type="String" />
+            <Parameter Name="Password_" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="stp_AdminoInfo_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="Id_clients" Nullable="false" />
+          <Property Type="String" Name="Exchanges" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="APICommand1" Nullable="true" />
+          <Property Type="String" Name="APICommand2" Nullable="true" />
+          <Property Type="String" Name="APICommand3" Nullable="true" />
+          <Property Type="String" Name="APICommand4" Nullable="true" />
+          <Property Type="String" Name="APICommand5" Nullable="true" />
+          <Property Type="String" Name="MailForNotify" Nullable="true" MaxLength="105" />
+          <Property Type="String" Name="MailPasswordKeyForAccess" Nullable="true" MaxLength="105" />
+          <Property Type="String" Name="MailPasswordToAccount" Nullable="true" MaxLength="105" />
+        </ComplexType>
+        <ComplexType Name="stp_ClientsInfo_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Login_" Nullable="false" MaxLength="105" />
+          <Property Type="String" Name="Password_" Nullable="false" MaxLength="105" />
+          <Property Type="String" Name="API1Huobi" Nullable="true" />
+          <Property Type="String" Name="API1HuobiSecretKey" Nullable="true" />
+          <Property Type="String" Name="API2Binance" Nullable="true" />
+          <Property Type="String" Name="API2BinanceSecretKey" Nullable="true" />
+          <Property Type="String" Name="API3Uniswap" Nullable="true" />
+          <Property Type="String" Name="API3UniswapSecretKey" Nullable="true" />
+          <Property Type="String" Name="API4Kraken" Nullable="true" />
+          <Property Type="String" Name="API4KrakenSecretKey" Nullable="true" />
+          <Property Type="String" Name="API5Pancakeswap" Nullable="true" />
+          <Property Type="String" Name="API5PancakeswapSecretKey" Nullable="true" />
+          <Property Type="String" Name="Passphrase" Nullable="true" MaxLength="55" />
+          <Property Type="String" Name="Passphrase2" Nullable="true" MaxLength="55" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ArbitraModel1StoreContainer" CdmEntityContainer="ArbitraEntities1">
+          <EntitySetMapping Name="AdminoWorld">
+            <EntityTypeMapping TypeName="ArbitraModel1.AdminoWorld">
+              <MappingFragment StoreEntitySet="AdminoWorld">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_clients" ColumnName="Id_clients" />
+                <ScalarProperty Name="Exchanges" ColumnName="Exchanges" />
+                <ScalarProperty Name="APICommand1" ColumnName="APICommand1" />
+                <ScalarProperty Name="APICommand2" ColumnName="APICommand2" />
+                <ScalarProperty Name="APICommand3" ColumnName="APICommand3" />
+                <ScalarProperty Name="APICommand4" ColumnName="APICommand4" />
+                <ScalarProperty Name="APICommand5" ColumnName="APICommand5" />
+                <ScalarProperty Name="MailForNotify" ColumnName="MailForNotify" />
+                <ScalarProperty Name="MailPasswordKeyForAccess" ColumnName="MailPasswordKeyForAccess" />
+                <ScalarProperty Name="MailPasswordToAccount" ColumnName="MailPasswordToAccount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArbitrageClients">
+            <EntityTypeMapping TypeName="ArbitraModel1.ArbitrageClients">
+              <MappingFragment StoreEntitySet="ArbitrageClients">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Login_" ColumnName="Login_" />
+                <ScalarProperty Name="Password_" ColumnName="Password_" />
+                <ScalarProperty Name="API1Huobi" ColumnName="API1Huobi" />
+                <ScalarProperty Name="API1HuobiSecretKey" ColumnName="API1HuobiSecretKey" />
+                <ScalarProperty Name="API2Binance" ColumnName="API2Binance" />
+                <ScalarProperty Name="API2BinanceSecretKey" ColumnName="API2BinanceSecretKey" />
+                <ScalarProperty Name="API3Uniswap" ColumnName="API3Uniswap" />
+                <ScalarProperty Name="API3UniswapSecretKey" ColumnName="API3UniswapSecretKey" />
+                <ScalarProperty Name="API4Kraken" ColumnName="API4Kraken" />
+                <ScalarProperty Name="API4KrakenSecretKey" ColumnName="API4KrakenSecretKey" />
+                <ScalarProperty Name="API5Pancakeswap" ColumnName="API5Pancakeswap" />
+                <ScalarProperty Name="API5PancakeswapSecretKey" ColumnName="API5PancakeswapSecretKey" />
+                <ScalarProperty Name="Passphrase" ColumnName="Passphrase" />
+                <ScalarProperty Name="Passphrase2" ColumnName="Passphrase2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History">
+            <EntityTypeMapping TypeName="ArbitraModel1.History">
+              <MappingFragment StoreEntitySet="History">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_clients" ColumnName="Id_clients" />
+                <ScalarProperty Name="exchanges" ColumnName="exchanges" />
+                <ScalarProperty Name="profit" ColumnName="profit" />
+                <ScalarProperty Name="sold" ColumnName="sold" />
+                <ScalarProperty Name="bought" ColumnName="bought" />
+                <ScalarProperty Name="timehistory" ColumnName="timehistory" />
+                <ScalarProperty Name="totalprofit" ColumnName="totalprofit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="P2PHelper">
+            <EntityTypeMapping TypeName="ArbitraModel1.P2PHelper">
+              <MappingFragment StoreEntitySet="P2PHelper">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_clients" ColumnName="Id_clients" />
+                <ScalarProperty Name="exchanges" ColumnName="exchanges" />
+                <ScalarProperty Name="cryptopair" ColumnName="cryptopair" />
+                <ScalarProperty Name="price1" ColumnName="price1" />
+                <ScalarProperty Name="price2" ColumnName="price2" />
+                <ScalarProperty Name="profit" ColumnName="profit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpotFinancialHelper">
+            <EntityTypeMapping TypeName="ArbitraModel1.SpotFinancialHelper">
+              <MappingFragment StoreEntitySet="SpotFinancialHelper">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_clients" ColumnName="Id_clients" />
+                <ScalarProperty Name="cryptopair" ColumnName="cryptopair" />
+                <ScalarProperty Name="exchanges" ColumnName="exchanges" />
+                <ScalarProperty Name="investments" ColumnName="investments" />
+                <ScalarProperty Name="profitofthemash" ColumnName="profitofthemash" />
+                <ScalarProperty Name="timehistory" ColumnName="timehistory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="stp_AddClientAPI" FunctionName="ArbitraModel1.Store.stp_AddClientAPI" />
+          <FunctionImportMapping FunctionImportName="stp_AddClients" FunctionName="ArbitraModel1.Store.stp_AddClients" />
+          <FunctionImportMapping FunctionImportName="stp_AddHistory" FunctionName="ArbitraModel1.Store.stp_AddHistory" />
+          <FunctionImportMapping FunctionImportName="stp_AddPhrase" FunctionName="ArbitraModel1.Store.stp_AddPhrase" />
+          <FunctionImportMapping FunctionImportName="stp_AdminoInfo" FunctionName="ArbitraModel1.Store.stp_AdminoInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ArbitraModel1.stp_AdminoInfo_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_clients" ColumnName="Id_clients" />
+                <ScalarProperty Name="Exchanges" ColumnName="Exchanges" />
+                <ScalarProperty Name="APICommand1" ColumnName="APICommand1" />
+                <ScalarProperty Name="APICommand2" ColumnName="APICommand2" />
+                <ScalarProperty Name="APICommand3" ColumnName="APICommand3" />
+                <ScalarProperty Name="APICommand4" ColumnName="APICommand4" />
+                <ScalarProperty Name="APICommand5" ColumnName="APICommand5" />
+                <ScalarProperty Name="MailForNotify" ColumnName="MailForNotify" />
+                <ScalarProperty Name="MailPasswordKeyForAccess" ColumnName="MailPasswordKeyForAccess" />
+                <ScalarProperty Name="MailPasswordToAccount" ColumnName="MailPasswordToAccount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="stp_ClearHistory" FunctionName="ArbitraModel1.Store.stp_ClearHistory" />
+          <FunctionImportMapping FunctionImportName="stp_ClientsInfo" FunctionName="ArbitraModel1.Store.stp_ClientsInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ArbitraModel1.stp_ClientsInfo_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Login_" ColumnName="Login_" />
+                <ScalarProperty Name="Password_" ColumnName="Password_" />
+                <ScalarProperty Name="API1Huobi" ColumnName="API1Huobi" />
+                <ScalarProperty Name="API1HuobiSecretKey" ColumnName="API1HuobiSecretKey" />
+                <ScalarProperty Name="API2Binance" ColumnName="API2Binance" />
+                <ScalarProperty Name="API2BinanceSecretKey" ColumnName="API2BinanceSecretKey" />
+                <ScalarProperty Name="API3Uniswap" ColumnName="API3Uniswap" />
+                <ScalarProperty Name="API3UniswapSecretKey" ColumnName="API3UniswapSecretKey" />
+                <ScalarProperty Name="API4Kraken" ColumnName="API4Kraken" />
+                <ScalarProperty Name="API4KrakenSecretKey" ColumnName="API4KrakenSecretKey" />
+                <ScalarProperty Name="API5Pancakeswap" ColumnName="API5Pancakeswap" />
+                <ScalarProperty Name="API5PancakeswapSecretKey" ColumnName="API5PancakeswapSecretKey" />
+                <ScalarProperty Name="Passphrase" ColumnName="Passphrase" />
+                <ScalarProperty Name="Passphrase2" ColumnName="Passphrase2" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="stp_SendMail" FunctionName="ArbitraModel1.Store.stp_SendMail" />
+          <FunctionImportMapping FunctionImportName="stp_ShowHistorywithValidation" FunctionName="ArbitraModel1.Store.stp_ShowHistorywithValidation" />
+          <FunctionImportMapping FunctionImportName="stp_ShowHistory2" FunctionName="ArbitraModel1.Store.stp_ShowHistory2" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

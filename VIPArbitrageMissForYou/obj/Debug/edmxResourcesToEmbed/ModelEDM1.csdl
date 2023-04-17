@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ArbitraModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AdminoWorld">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_clients" Type="Int32" Nullable="false" />
+    <Property Name="Exchanges" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="APICommand1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="APICommand2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="APICommand3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="APICommand4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="APICommand5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MailForNotify" Type="String" MaxLength="105" FixedLength="false" Unicode="true" />
+    <Property Name="MailPasswordKeyForAccess" Type="String" MaxLength="105" FixedLength="false" Unicode="true" />
+    <Property Name="MailPasswordToAccount" Type="String" MaxLength="105" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ArbitrageClients" Relationship="Self.FK__AdminoWor__Id_cl__2A164134" FromRole="AdminoWorld" ToRole="ArbitrageClients" />
+  </EntityType>
+  <EntityType Name="ArbitrageClients">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login_" Type="String" MaxLength="105" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password_" Type="String" MaxLength="105" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="API1Huobi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="API1HuobiSecretKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="API2Binance" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="API2BinanceSecretKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="API3Uniswap" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="API3UniswapSecretKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="API4Kraken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="API4KrakenSecretKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="API5Pancakeswap" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="API5PancakeswapSecretKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Passphrase" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
+    <Property Name="Passphrase2" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AdminoWorld" Relationship="Self.FK__AdminoWor__Id_cl__2A164134" FromRole="ArbitrageClients" ToRole="AdminoWorld" />
+    <NavigationProperty Name="History" Relationship="Self.FK__History__Id_clie__06CD04F7" FromRole="ArbitrageClients" ToRole="History" />
+    <NavigationProperty Name="P2PHelper" Relationship="Self.FK__P2PHelper__Id_cl__7755B73D" FromRole="ArbitrageClients" ToRole="P2PHelper" />
+    <NavigationProperty Name="SpotFinancialHelper" Relationship="Self.FK__SpotFinan__Id_cl__7B264821" FromRole="ArbitrageClients" ToRole="SpotFinancialHelper" />
+  </EntityType>
+  <EntityType Name="History">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_clients" Type="Int32" Nullable="false" />
+    <Property Name="exchanges" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="profit" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="sold" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="bought" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="timehistory" Type="DateTime" Precision="3" />
+    <Property Name="totalprofit" Type="Decimal" Precision="11" Scale="2" />
+    <NavigationProperty Name="ArbitrageClients" Relationship="Self.FK__History__Id_clie__06CD04F7" FromRole="History" ToRole="ArbitrageClients" />
+  </EntityType>
+  <EntityType Name="P2PHelper">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_clients" Type="Int32" Nullable="false" />
+    <Property Name="exchanges" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="cryptopair" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="price1" Type="Decimal" Precision="11" Scale="2" />
+    <Property Name="price2" Type="Decimal" Precision="11" Scale="2" />
+    <Property Name="profit" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="ArbitrageClients" Relationship="Self.FK__P2PHelper__Id_cl__7755B73D" FromRole="P2PHelper" ToRole="ArbitrageClients" />
+  </EntityType>
+  <EntityType Name="SpotFinancialHelper">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_clients" Type="Int32" Nullable="false" />
+    <Property Name="cryptopair" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="exchanges" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="investments" Type="Int32" />
+    <Property Name="profitofthemash" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="timehistory" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="ArbitrageClients" Relationship="Self.FK__SpotFinan__Id_cl__7B264821" FromRole="SpotFinancialHelper" ToRole="ArbitrageClients" />
+  </EntityType>
+  <Association Name="FK__AdminoWor__Id_cl__2A164134">
+    <End Role="ArbitrageClients" Type="Self.ArbitrageClients" Multiplicity="1" />
+    <End Role="AdminoWorld" Type="Self.AdminoWorld" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ArbitrageClients">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AdminoWorld">
+        <PropertyRef Name="Id_clients" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__History__Id_clie__06CD04F7">
+    <End Role="ArbitrageClients" Type="Self.ArbitrageClients" Multiplicity="1" />
+    <End Role="History" Type="Self.History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ArbitrageClients">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="History">
+        <PropertyRef Name="Id_clients" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__P2PHelper__Id_cl__7755B73D">
+    <End Role="ArbitrageClients" Type="Self.ArbitrageClients" Multiplicity="1" />
+    <End Role="P2PHelper" Type="Self.P2PHelper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ArbitrageClients">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="P2PHelper">
+        <PropertyRef Name="Id_clients" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SpotFinan__Id_cl__7B264821">
+    <End Role="ArbitrageClients" Type="Self.ArbitrageClients" Multiplicity="1" />
+    <End Role="SpotFinancialHelper" Type="Self.SpotFinancialHelper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ArbitrageClients">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SpotFinancialHelper">
+        <PropertyRef Name="Id_clients" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ArbitraEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AdminoWorld" EntityType="Self.AdminoWorld" />
+    <EntitySet Name="ArbitrageClients" EntityType="Self.ArbitrageClients" />
+    <EntitySet Name="History" EntityType="Self.History" />
+    <EntitySet Name="P2PHelper" EntityType="Self.P2PHelper" />
+    <EntitySet Name="SpotFinancialHelper" EntityType="Self.SpotFinancialHelper" />
+    <AssociationSet Name="FK__AdminoWor__Id_cl__2A164134" Association="Self.FK__AdminoWor__Id_cl__2A164134">
+      <End Role="ArbitrageClients" EntitySet="ArbitrageClients" />
+      <End Role="AdminoWorld" EntitySet="AdminoWorld" />
+    </AssociationSet>
+    <AssociationSet Name="FK__History__Id_clie__06CD04F7" Association="Self.FK__History__Id_clie__06CD04F7">
+      <End Role="ArbitrageClients" EntitySet="ArbitrageClients" />
+      <End Role="History" EntitySet="History" />
+    </AssociationSet>
+    <AssociationSet Name="FK__P2PHelper__Id_cl__7755B73D" Association="Self.FK__P2PHelper__Id_cl__7755B73D">
+      <End Role="ArbitrageClients" EntitySet="ArbitrageClients" />
+      <End Role="P2PHelper" EntitySet="P2PHelper" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SpotFinan__Id_cl__7B264821" Association="Self.FK__SpotFinan__Id_cl__7B264821">
+      <End Role="ArbitrageClients" EntitySet="ArbitrageClients" />
+      <End Role="SpotFinancialHelper" EntitySet="SpotFinancialHelper" />
+    </AssociationSet>
+    <FunctionImport Name="stp_AddClientAPI">
+      <Parameter Name="i" Mode="In" Type="Int32" />
+      <Parameter Name="Login_" Mode="In" Type="String" />
+      <Parameter Name="Pass" Mode="In" Type="String" />
+      <Parameter Name="API" Mode="In" Type="String" />
+      <Parameter Name="APISecret" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="stp_AddClients">
+      <Parameter Name="Login_" Mode="In" Type="String" />
+      <Parameter Name="Password_" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="stp_AddHistory">
+      <Parameter Name="Login_" Mode="In" Type="String" />
+      <Parameter Name="Password_" Mode="In" Type="String" />
+      <Parameter Name="exch_" Mode="In" Type="String" />
+      <Parameter Name="sold_" Mode="In" Type="Decimal" />
+      <Parameter Name="bought_" Mode="In" Type="Decimal" />
+      <Parameter Name="time_" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="stp_AddPhrase">
+      <Parameter Name="i" Mode="In" Type="Int32" />
+      <Parameter Name="Login_" Mode="In" Type="String" />
+      <Parameter Name="Pass" Mode="In" Type="String" />
+      <Parameter Name="Passphrase" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="stp_AdminoInfo" ReturnType="Collection(ArbitraModel1.stp_AdminoInfo_Result)">
+      <Parameter Name="Login_" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="stp_ClearHistory">
+      <Parameter Name="Login_" Mode="In" Type="String" />
+      <Parameter Name="Password_" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="stp_ClientsInfo" ReturnType="Collection(ArbitraModel1.stp_ClientsInfo_Result)">
+      <Parameter Name="Login_" Mode="In" Type="String" />
+      <Parameter Name="Password_" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="stp_SendMail" ReturnType="Collection(String)">
+      <Parameter Name="Login_" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="stp_ShowHistorywithValidation" ReturnType="Collection(Decimal)">
+      <Parameter Name="Login_" Mode="In" Type="String" />
+      <Parameter Name="Password_" Mode="In" Type="String" />
+      <Parameter Name="l" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="stp_ShowHistory2" ReturnType="Collection(String)">
+      <Parameter Name="Login_" Mode="In" Type="String" />
+      <Parameter Name="Password_" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="stp_AdminoInfo_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="Int32" Name="Id_clients" Nullable="false" />
+    <Property Type="String" Name="Exchanges" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="APICommand1" Nullable="true" />
+    <Property Type="String" Name="APICommand2" Nullable="true" />
+    <Property Type="String" Name="APICommand3" Nullable="true" />
+    <Property Type="String" Name="APICommand4" Nullable="true" />
+    <Property Type="String" Name="APICommand5" Nullable="true" />
+    <Property Type="String" Name="MailForNotify" Nullable="true" MaxLength="105" />
+    <Property Type="String" Name="MailPasswordKeyForAccess" Nullable="true" MaxLength="105" />
+    <Property Type="String" Name="MailPasswordToAccount" Nullable="true" MaxLength="105" />
+  </ComplexType>
+  <ComplexType Name="stp_ClientsInfo_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Login_" Nullable="false" MaxLength="105" />
+    <Property Type="String" Name="Password_" Nullable="false" MaxLength="105" />
+    <Property Type="String" Name="API1Huobi" Nullable="true" />
+    <Property Type="String" Name="API1HuobiSecretKey" Nullable="true" />
+    <Property Type="String" Name="API2Binance" Nullable="true" />
+    <Property Type="String" Name="API2BinanceSecretKey" Nullable="true" />
+    <Property Type="String" Name="API3Uniswap" Nullable="true" />
+    <Property Type="String" Name="API3UniswapSecretKey" Nullable="true" />
+    <Property Type="String" Name="API4Kraken" Nullable="true" />
+    <Property Type="String" Name="API4KrakenSecretKey" Nullable="true" />
+    <Property Type="String" Name="API5Pancakeswap" Nullable="true" />
+    <Property Type="String" Name="API5PancakeswapSecretKey" Nullable="true" />
+    <Property Type="String" Name="Passphrase" Nullable="true" MaxLength="55" />
+    <Property Type="String" Name="Passphrase2" Nullable="true" MaxLength="55" />
+  </ComplexType>
+</Schema>
